@@ -57,13 +57,11 @@ public class CircleImage {
 				Bubble.CircleSize = Integer.parseInt(circleSizeInput.getText());
 				Bubble.pensize = Double.parseDouble(penSizeInput.getText());
 				orginal = new Picture(pictureName);
-				//blank = new Picture(orginal.width(), orginal.height());
 				StdDraw.setCanvasSize(orginal.width(), orginal.height());
 				StdDraw.setXscale(0,orginal.width());
 				StdDraw.setYscale(orginal.height(),0);
-				test = new Bubble();
+				test = new Bubble(orginal);
 				StdDraw.clear(StdDraw.BLACK);
-				test.Bubble(orginal);
 				f.toFront();
 				submit.setEnabled(false);
 				startSquarebtn.setEnabled(true);
@@ -144,29 +142,29 @@ public class CircleImage {
 		test.SearchPic();
 		test.Compare();
 		test.paintCircle();
-}
-public static void loopSquare(){
+	}
+	public static void loopSquare(){
 		test.SearchPic();
 		test.Compare();
 		test.paintSquare();
-}
-public CircleImage(String actionString){
-	loop = new Timer(1, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-			if (actionString.equals("StartCircle")) {
-				loopCircle();	
+	}	
+	public CircleImage(String actionString){
+		loop = new Timer(1, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (actionString.equals("StartCircle")) {
+					loopCircle();	
+				}
+				else if (actionString.equals("StartSquare")) {
+					loopSquare();
+				}
 			}
-			else if (actionString.equals("StartSquare")) {
-				loopSquare();
-			}
-        }
-    });
-}
-public void start(){
-	loop.start();
-}
-public void stop(){
-	loop.stop();
-}
+		});
+	}
+	public void start(){
+		loop.start();
+	}
+	public void stop(){
+		loop.stop();
+	}
 }
